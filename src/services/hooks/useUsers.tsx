@@ -26,7 +26,7 @@ export async function getUsers(page: number): Promise<GetUsersResponse> {
     id: user.id,
     name: user.name,
     email: user.email,
-    createdAt: new Date(user.createdAt).toLocaleDateString("pt-BR", {
+    createdAt: new Date(user.created_at).toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -36,9 +36,12 @@ export async function getUsers(page: number): Promise<GetUsersResponse> {
   return { users, totalCount };
 }
 
-export function useUsers(page: number, options: UseQueryOptions) {
+export function useUsers(page: number, options?: UseQueryOptions) {
+  
   return useQuery(["users", page], () => getUsers(page), {
     staleTime: 1000 * 60 * 10, // 10 min
-    ...options,
-  });
+    ...options as any,
+  } 
+  
+  );
 }

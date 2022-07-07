@@ -145,9 +145,7 @@ export default function UserList({ users }) {
                   ))}
                 </Tbody>
               </ChakraTable>
-
-              <Pagination
-                totalCountOfRegisters={data.totalCount}
+              <Pagination totalCountOfRegisters={data.totalCount}
                 currentPage={page}
                 onPageChange={setPage}
               />
